@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mxbla\\source\\repos\\Mo1 Prog Assisgn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{20AE9859-E67F-4E32-A276-4AD843EA3803}|Mo1 Prog Assisgn\\Mo1 Prog Assisgn.vcxproj|C:\\Users\\mxbla\\source\\repos\\Mo1 Prog Assisgn\\Mo1 Prog Assisgn\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{20AE9859-E67F-4E32-A276-4AD843EA3803}|Mo1 Prog Assisgn\\Mo1 Prog Assisgn.vcxproj|solutionrelative:Mo1 Prog Assisgn\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "C:\\Users\\mxbla\\source\\repos\\Mo1 Prog Assisgn\\Mo1 Prog Assisgn\\Main.cpp",
+              "RelativeDocumentMoniker": "Mo1 Prog Assisgn\\Main.cpp",
+              "ToolTip": "C:\\Users\\mxbla\\source\\repos\\Mo1 Prog Assisgn\\Mo1 Prog Assisgn\\Main.cpp",
+              "RelativeToolTip": "Mo1 Prog Assisgn\\Main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-04T12:41:37.224Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
