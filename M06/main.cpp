@@ -49,10 +49,183 @@ public:
     }
 };
 
+bool isValidString(const string & str) {
+    if (str.empty()) {
+        return false; //if empty return false
+    }
+    return true;
+}
+
 int main() {
     MyVector vect;
 
-    Team* team1 = new Team("Team1",5);
+	bool power = true;
+	string teamName;
+	
+	int teamSize;
+	
+    do {
+            cout << "What do you want to name your team: ";
+            cin >> teamName;
+            if (!isValidString(teamName)) {
+                invalid_argument("Team Name is empty");
+            }
+        } while (!isValidString(teamName)); 
+
+	do { //a do while loop to insure that memory is entered correctly
+            cout << "How many team members do you want to have: ";
+            cin >> teamSize;
+
+            if (cin.fail() || teamSize < 0) {
+                cin.clear(); //Clear the rror
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input
+                teamSize = 0;
+                cout << "Invalid Input. Please enter a postive number" << endl;
+            }
+        } while (teamSize == 0);
+	Team* team = new Team(teamName,teamSize);
+	vect.push_back(team);
+
+	do{
+		int choice;
+		cout<<"Main Menu:" << endl;
+		for (int i = 0; i < vect.getSize();i++){
+			cout << vect.at(i)->toString()<< endl;
+		}
+		cout<<"\t1:Create Team\n\t2:Add players\n\t3:Remove Players\n\t4:Copy Team\n\t5:Turn off\nChoice:";
+		cin >> choice;
+		switch(choice){
+			case 1: { //Create Team
+				do {
+					cout << "What do you want to name your team: ";
+					cin >> teamName;
+					if (!isValidString(teamName)) {
+						invalid_argument("Team Name is empty");
+					}
+				} while (!isValidString(teamName)); 
+
+				do { //a do while loop to insure that memory is entered correctly
+						cout << "How many team members do you want to have: ";
+						cin >> teamSize;
+
+						if (cin.fail() || teamSize < 0) {
+							cin.clear(); //Clear the rror
+							cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input
+							teamSize = 0;
+							cout << "Invalid Input. Please enter a postive number" << endl;
+						}
+				} while (teamSize == 0);
+				Team* team = new Team(teamName,teamSize);
+				vect.push_back(team);
+				break;
+			}
+			case 2:{// add players
+				string teamChoice;
+				do {
+					cout << "What is the name of your of the team you want to add to: ";
+					cin >> teamChoice;
+					if (!isValidString(teamChoice)) {
+						invalid_argument("Team Name is empty");
+					}
+				} while (!isValidString(teamChoice));
+				int index = -1;
+				for (int i = 0; i < vect.getSize();i++){
+					if(vect.at(i)->setTeamName() == teamChoice){
+						index = i;
+						break;
+					}
+				}
+				if (index == -1){
+					cout << "Team Name Not Found" << endl;
+					break;
+				}else{
+					string name;
+					cout << "What do you want to name the player: ";
+					cin >> name;
+					try{
+						vect.at(index)->addTeammate(name);
+					}catch(invalid_argument e){
+						cerr << e.what() << endl;
+					}
+					break;
+				}
+			}
+			case 3:{//Remove Players
+				string teamChoice;
+				do {
+					cout << "What is the name of your of the team you want to remove from: ";
+					cin >> teamChoice;
+					if (!isValidString(teamChoice)) {
+						invalid_argument("Team Name is empty");
+					}
+				} while (!isValidString(teamChoice));
+				int index = -1;
+				for (int i = 0; i < vect.getSize();i++){
+					if(vect.at(i)->setTeamName() == teamChoice){
+						index = i;
+						break;
+					}
+				}
+				if (index == -1){
+					cout << "Team Name Not Found" << endl;
+					break;
+				}else{
+					string name;
+					cout << "What is the name of the player you want to remove: ";
+					cin >> name;
+					try{
+						vect.at(index)->deleteTeammate(name);
+					}catch(invalid_argument e){
+						cerr << e.what() << endl;
+					}
+					break;
+				}
+			}
+			case 4:{//Copy Team
+				string teamChoice;
+				do {
+					cout << "What is the name of the team you want to copy: ";
+					cin >> teamChoice;
+					if (!isValidString(teamChoice)) {
+						invalid_argument("Team Name is empty");
+					}
+				} while (!isValidString(teamChoice));
+				int index = -1;
+				for (int i = 0; i < vect.getSize();i++){
+					if(vect.at(i)->setTeamName() == teamChoice){
+						index = i;
+						break;
+					}
+				}
+				if (index == -1){
+					cout << "Team Name Not Found" << endl;
+					break;
+				}else{
+					try{
+						string teamName;
+						cout << "What do you want the name of the copy to be: ";
+						cin >> teamName;
+
+						Team* team = new Team(teamName,vect.at(index)->copyConstuctor());
+						vect.push_back(team);
+					}catch(invalid_argument e){
+						cerr << e.what() << endl;
+					}
+					break;
+				}
+			}
+			case 5:{//end form
+				power = false;
+			}
+
+			default:{
+				cout << "Enter a number on the left" << endl;
+				break;
+			}
+		}
+	}while (power == true);
+
+   /* Team* team1 = new Team("Team1",5);
     vect.push_back(team1);
     cout << vect.at(0)->setTeamName() << endl;
     vect.at(0)->addTeammate("Myles");
@@ -63,7 +236,7 @@ int main() {
     vect.at(1)->addTeammate("Tom");
 
     cout << vect.at(0)->toString() << endl;
-    cout << vect.at(1)->toString() << endl;
+    cout << vect.at(1)->toString() << endl;*/
 	
 	return 0;
 }

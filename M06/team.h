@@ -28,7 +28,6 @@ public:
 
 	//Constructor
 	Team(string teamName, int teamSize) {
-		cout << "//constructor ran" << endl;
 		this->teamName = validateString(teamName);
 		if (teamSize < 1){ 
 			throw invalid_argument("Team capacity must be greater than 0");
@@ -46,7 +45,6 @@ public:
 		for(int i = 0; i < teamCapacity; i++ ){
 			if (!ptr[i+1].empty()){
 				players[i] = ptr[i+1];
-				cout << "Player added:" << players[i] << endl;
 				teamSize++;
 			}
 		}
@@ -70,8 +68,6 @@ public:
 		for (int i = 0; i < teamSize; i++) {
 			copyTeam[i+1] = players[i];
 		}
-
-		cout << copyTeam[1] << endl;
 		return copyTeam;
 	}
 
@@ -126,7 +122,6 @@ public:
 
 	string toString() {
 		string str = "Team Name: " + teamName + " Players: "; 
-		cout << to_string(teamSize) << endl;
 		for (int i = 0; i < teamSize; i++) {
 			str = str + players[i] + ", ";
 		}
