@@ -4,6 +4,8 @@ using namespace std;
 
 class  Team {
 private:
+	Team** data;
+
 	//varibles
 	string teamName;
 
