@@ -297,7 +297,6 @@ public:
 	}
 };
 
-
 class Green : public Tea {
 public:
 	Green(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon) : Tea(name, description, servingSize, calories, price, hot, creamer, sweetener, lemon) {
@@ -446,13 +445,210 @@ public:
 		}
 
 		if (ice == true) {
-			hasIce = " has caffeine ";
+			hasIce = " has ice ";
 		}
 		else {
-			hasIce = " has no caffeine ";
+			hasIce = " has no ice ";
 		}
 
 		string value = "Soda: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
 		return value;
 	}
 };
+
+class Cola : public Soda {
+	Cola(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Soda(name, description, servingSize, calories, price, brand, died, ice) {
+		cout << name << "is a " << brand << " Cola" << endl;
+	}
+
+	~Cola() {
+		cout << name << "is no longer a cola" << endl;
+	}
+
+	string toString() {
+		string hasIce;
+		string isdiet;
+
+		//setting varibles
+		if (diet == true) {
+			isdiet = "is diet";
+		}
+		else
+		{
+			isdiet = "is not diet";
+		}
+
+		if (ice == true) {
+			hasIce = " has ice ";
+		}
+		else {
+			hasIce = " has no ice ";
+		}
+
+		string value = "Soda(Type:Cola): " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
+		return value;
+	}
+};
+
+class LemonLime : public Soda {
+	LemonLime(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Soda(name, description, servingSize, calories, price, brand, died, ice) {
+		cout << name << "is a " << brand << " Lemon-Lime" << endl;
+	}
+
+	~LemonLime() {
+		cout << name << "is no longer Lemon-Lime" << endl;
+	}
+
+	string toString() {
+		string hasIce;
+		string isdiet;
+
+		//setting varibles
+		if (diet == true) {
+			isdiet = "is diet";
+		}
+		else
+		{
+			isdiet = "is not diet";
+		}
+
+		if (ice == true) {
+			hasIce = " has ice ";
+		}
+		else {
+			hasIce = " has no ice ";
+		}
+
+		string value = "Soda(Type:Lemon-Lime): " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
+		return value;
+	}
+};
+
+class Birch : public Soda {
+	Birch(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Soda(name, description, servingSize, calories, price, brand, died, ice) {
+		cout << name << "is a " << brand << " Birch" << endl;
+	}
+
+	~Birch() {
+		cout << name << "is no longer Birch" << endl;
+	}
+
+	string toString() {
+		string hasIce;
+		string isdiet;
+
+		//setting varibles
+		if (diet == true) {
+			isdiet = "is diet";
+		}
+		else
+		{
+			isdiet = "is not diet";
+		}
+
+		if (ice == true) {
+			hasIce = " has ice ";
+		}
+		else {
+			hasIce = " has no ice ";
+		}
+
+		string value = "Soda(Type:Birch): " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
+		return value;
+	}
+};
+
+class EnergyDrink : public Beverage {
+protected:
+	string brand;
+
+	bool sweetener;
+public:
+	EnergyDrink(string name, string description, int servingSize, int calories, double price, string brand, bool sweeteenr) : Beverage(name, description, servingSize, calories, price) {
+		this->brand = brand;
+		this->sweetener = sweeteenr;
+		cout << name << " is a " << this->brand << "energy drink" << endl;
+	}
+
+	~EnergyDrink() {
+		cout << name << " is no longer an energy drink." << endl;
+	}
+
+	//get
+	string getBrand() {
+		return brand;
+	}
+
+	string toString() {;
+		string hasSweetener;
+
+		//setting varibles
+		if (sweetener == true) {
+			hasSweetener = " has sweetener ";
+		}
+		else
+		{
+			hasSweetener = " has sweetener ";
+		}
+
+		string value = "Energy Drink: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + hasSweetener ;
+		return value;
+	}
+};
+
+class Caffeine : public EnergyDrink {
+public:
+	Caffeine(string name, string description, int servingSize, int calories, double price, string brand, bool sweeteenr) : EnergyDrink(name, description, servingSize, calories, price, brand, sweeteenr) {
+		cout << name << " uses caffeine as a stimulant" << endl;
+	}
+
+	~Caffeine() {
+		cout << name << " no longer uses caffeine as a stimulant" << endl;
+	}
+
+	string toString() {
+		;
+		string hasSweetener;
+
+		//setting varibles
+		if (sweetener == true) {
+			hasSweetener = " has sweetener ";
+		}
+		else
+		{
+			hasSweetener = " has sweetener ";
+		}
+
+		string value = "Energy Drink: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + hasSweetener + " uses caffiene";
+		return value;
+	}
+};
+
+class Taurine : public EnergyDrink {
+public:
+	Taurine(string name, string description, int servingSize, int calories, double price, string brand, bool sweeteenr) : EnergyDrink(name, description, servingSize, calories, price, brand, sweeteenr) {
+		cout << name << " uses taurine as a stimulant" << endl;
+	}
+
+	~Taurine() {
+		cout << name << " no longer uses taurine as a stimulant" << endl;
+	}
+
+	string toString() {
+		;
+		string hasSweetener;
+
+		//setting varibles
+		if (sweetener == true) {
+			hasSweetener = " has sweetener ";
+		}
+		else
+		{
+			hasSweetener = " has sweetener ";
+		}
+
+		string value = "Energy Drink: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + hasSweetener + " uses taurine";
+		return value;
+	}
+};
+
