@@ -1,3 +1,6 @@
+#ifndef BEVERAGE_H
+#define BEVERAGE_H
+
 #include <iostream>
 #include <string>
 
@@ -5,650 +8,145 @@ using namespace std;
 
 class Beverage {
 protected:
-	string name;
-	string description;
-	
-	int servingSize;
-	int calories;
-
-	double price;
+    string name;
+    string description;
+    int servingSize;
+    int calories;
+    double price;
 
 public:
-	Beverage(string name, string description, int servingSize, int calories, double price){
-		this->name = name;
-		this->description = description;
-		this->servingSize = servingSize;
-		this->calories = calories;
-		this->price = price;
+    Beverage(string name, string description, int servingSize, int calories, double price);
+    virtual ~Beverage();
 
-		cout << "making " + name << endl;
-	}
-
-	~Beverage() {
-		cout << "the " + name + " is being removed" << endl;
-	}
-
-	//get
-	string getName() {
-		return name;
-	}
-	string getDescription() {
-		return description;
-	}
-
-	int getServingSize() {
-		return servingSize;
-	}
-	int getCalories() {
-		return calories;
-	}
-
-	double getPrice() {
-		return price;
-	}
-
-
-	string toString(){
-		string value = "Beverage: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price);
-		return value;
-	}
+    string getName();
+    string getDescription();
+    int getServingSize();
+    int getCalories();
+    double getPrice();
+    virtual string toString();
 };
 
-class Coffee: public Beverage {
+class Coffee : public Beverage {
 private:
-	bool hot;
-	bool caffeinated;
-	bool creamer;
-	bool sweetener;
+    bool hot;
+    bool caffeinated;
+    bool creamer;
+    bool sweetener;
 
 public:
-	Coffee(string name, string description, int servingSize, int calories, double price, bool hot, bool caffinated, bool creamer, bool sweetener) : Beverage(name, description, servingSize, calories, price){
-		this->hot = hot;
-		this->caffeinated = caffinated;
-		this->creamer = creamer;
-		this->sweetener = sweetener;
-		cout << name << "is now a coffee" << endl;
-	}
+    Coffee(string name, string description, int servingSize, int calories, double price, bool hot, bool caffeinated, bool creamer, bool sweetener);
+    ~Coffee();
 
-	~Coffee() {
-		cout << name << "is no longer a coffe" << endl;
-	}
-
-	//get
-	bool getTemp() {
-		return hot;
-	}
-	bool getCaffeinated() {
-		return caffeinated;
-	}
-	bool getCreamer() {
-		return creamer;
-	}
-	bool getSweetener() {
-		return sweetener;
-	}
-
-	string toString() {
-		string temp;
-		string isCaffiented;
-		string hasCreamer;
-		string hasSweetener;
-
-		//setting varibles
-		if (hot == true) {
-			temp = "hot";
-		}
-		else
-		{
-			temp = "cold";
-		}
-
-		if (caffeinated == true) {
-			isCaffiented = " has caffeine ";
-		}
-		else {
-			isCaffiented = " has no caffeine ";
-		}
-
-
-		if (creamer == true) {
-			hasCreamer = " has creamer ";
-		}
-		else {
-			hasCreamer = " has no creamer ";
-		}
-
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else {
-			hasSweetener = " has no sweetener ";
-		}
-
-		string value = "Coffee: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Temperature: " + temp + isCaffiented + hasCreamer + hasSweetener;
-		return value;
-	}
+    bool getTemp();
+    bool getCaffeinated();
+    bool getCreamer();
+    bool getSweetener();
+    string toString();
 };
 
 class Tea : public Beverage {
 protected:
-	bool hot;
-	bool creamer;
-	bool sweetener;
-	bool lemon;
+    bool hot;
+    bool creamer;
+    bool sweetener;
+    bool lemon;
 
 public:
-	Tea(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon) : Beverage(name, description, servingSize, calories, price) {
-		this->hot = hot;
-		this->creamer = creamer;
-		this->sweetener = sweetener;
-		this->lemon = lemon;
-
-		cout << name << " is now a tea" << endl;
-	}
-
-	~Tea() {
-		cout << name << " is no longer tea" << endl;
-	}
-
-	string toString() {
-		string temp;
-		string hasLemon;
-		string hasCreamer;
-		string hasSweetener;
-
-		//setting varibles
-		if (hot == true) {
-			temp = "hot";
-		}
-		else
-		{
-			temp = "cold";
-		}
-
-		if (lemon == true) {
-			hasLemon = " has caffeine ";
-		}
-		else {
-			hasLemon = " has no caffeine ";
-		}
-
-
-		if (creamer == true) {
-			hasCreamer = " has creamer ";
-		}
-		else {
-			hasCreamer = " has no creamer ";
-		}
-
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else {
-			hasSweetener = " has no sweetener ";
-		}
-
-		string value = "Tea: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Temperature: " + temp + hasLemon + hasCreamer + hasSweetener;
-		return value;
-	}
+    Tea(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon);
+    virtual ~Tea();
+    virtual string toString();
 };
 
 class Black : public Tea {
 public:
-	Black(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon) : Tea(name, description, servingSize,  calories, price, hot, creamer, sweetener, lemon) {
-		cout << name <<"tea type is black" << endl;
-	}
-
-	~Black() {
-		cout << name << " is no longer black tea" << endl;
-	}
-
-	string toString() {
-		string temp;
-		string hasLemon;
-		string hasCreamer;
-		string hasSweetener;
-
-		//setting varibles
-		if (hot == true) {
-			temp = "hot";
-		}
-		else
-		{
-			temp = "cold";
-		}
-
-		if (lemon == true) {
-			hasLemon = " has caffeine ";
-		}
-		else {
-			hasLemon = " has no caffeine ";
-		}
-
-
-		if (creamer == true) {
-			hasCreamer = " has creamer ";
-		}
-		else {
-			hasCreamer = " has no creamer ";
-		}
-
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else {
-			hasSweetener = " has no sweetener ";
-		}
-
-		string value = "Black Tea: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Temperature: " + temp + hasLemon + hasCreamer + hasSweetener;
-		return value;
-	}
+    Black(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon);
+    ~Black();
+    string toString();
 };
 
 class Oolong : public Tea {
 public:
-	Oolong(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon) : Tea(name, description, servingSize, calories, price, hot, creamer, sweetener, lemon) {
-		cout << name << "tea type is Oolong" << endl;
-	}
-
-	~Oolong() {
-		cout << name << " is no longer Oolong tea" << endl;
-	}
-
-	string toString() {
-		string temp;
-		string hasLemon;
-		string hasCreamer;
-		string hasSweetener;
-
-		//setting varibles
-		if (hot == true) {
-			temp = "hot";
-		}
-		else
-		{
-			temp = "cold";
-		}
-
-		if (lemon == true) {
-			hasLemon = " has caffeine ";
-		}
-		else {
-			hasLemon = " has no caffeine ";
-		}
-
-
-		if (creamer == true) {
-			hasCreamer = " has creamer ";
-		}
-		else {
-			hasCreamer = " has no creamer ";
-		}
-
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else {
-			hasSweetener = " has no sweetener ";
-		}
-
-		string value = "Oolong Tea: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Temperature: " + temp + hasLemon + hasCreamer + hasSweetener;
-		return value;
-	}
+    Oolong(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon);
+    ~Oolong();
+    string toString();
 };
 
 class Green : public Tea {
 public:
-	Green(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon) : Tea(name, description, servingSize, calories, price, hot, creamer, sweetener, lemon) {
-		cout << name << "tea type is Green" << endl;
-	}
-
-	~Green() {
-		cout << name << " is no longer Green tea" << endl;
-	}
-
-	string toString() {
-		string temp;
-		string hasLemon;
-		string hasCreamer;
-		string hasSweetener;
-
-		//setting varibles
-		if (hot == true) {
-			temp = "hot";
-		}
-		else
-		{
-			temp = "cold";
-		}
-
-		if (lemon == true) {
-			hasLemon = " has caffeine ";
-		}
-		else {
-			hasLemon = " has no caffeine ";
-		}
-
-
-		if (creamer == true) {
-			hasCreamer = " has creamer ";
-		}
-		else {
-			hasCreamer = " has no creamer ";
-		}
-
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else {
-			hasSweetener = " has no sweetener ";
-		}
-
-		string value = "Green Tea: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Temperature: " + temp + hasLemon + hasCreamer + hasSweetener;
-		return value;
-	}
+    Green(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon);
+    ~Green();
+    string toString();
 };
 
 class Herbal : public Tea {
 public:
-	Herbal(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon) : Tea(name, description, servingSize, calories, price, hot, creamer, sweetener, lemon) {
-		cout << name << "tea type is Heerbal" << endl;
-	}
-
-	~Herbal() {
-		cout << name << " is no longer Herbal tea" << endl;
-	}
-
-	string toString() {
-		string temp;
-		string hasLemon;
-		string hasCreamer;
-		string hasSweetener;
-
-		//setting varibles
-		if (hot == true) {
-			temp = "hot";
-		}
-		else
-		{
-			temp = "cold";
-		}
-
-		if (lemon == true) {
-			hasLemon = " has caffeine ";
-		}
-		else {
-			hasLemon = " has no caffeine ";
-		}
-
-
-		if (creamer == true) {
-			hasCreamer = " has creamer ";
-		}
-		else {
-			hasCreamer = " has no creamer ";
-		}
-
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else {
-			hasSweetener = " has no sweetener ";
-		}
-
-		string value = "Herbal Tea: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Temperature: " + temp + hasLemon + hasCreamer + hasSweetener;
-		return value;
-	}
+    Herbal(string name, string description, int servingSize, int calories, double price, bool hot, bool creamer, bool sweetener, bool lemon);
+    ~Herbal();
+    string toString();
 };
 
 class Soda : public Beverage {
 protected:
-	string brand;
-	bool diet;
-	bool ice;
+    string brand;
+    bool diet;
+    bool ice;
+
 public:
-	Soda(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Beverage(name, description, servingSize, calories, price) {
-		this->brand = brand;
-		this->diet = diet;
-		this->ice = ice;
+    Soda(string name, string description, int servingSize, int calories, double price, string brand, bool diet, bool ice);
+    ~Soda();
 
-		cout << name << " is now a soda" << endl;
-	}
-
-	~Soda() {
-		cout << name << " is no longer a Soda" << endl;
-	}
-
-	string getBrand() {
-		return brand;
-	}
-
-	bool getDiet() {
-		return diet;
-	}
-
-	bool getIce() {
-		return ice;
-	}
-
-	string toString() {
-		string hasIce;
-		string isdiet;
-
-		//setting varibles
-		if (diet == true) {
-			isdiet = "is diet";
-		}
-		else
-		{
-			isdiet = "is not diet";
-		}
-
-		if (ice == true) {
-			hasIce = " has ice ";
-		}
-		else {
-			hasIce = " has no ice ";
-		}
-
-		string value = "Soda: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
-		return value;
-	}
+    string getBrand();
+    bool getDiet();
+    bool getIce();
+    string toString();
 };
 
 class Cola : public Soda {
-	Cola(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Soda(name, description, servingSize, calories, price, brand, died, ice) {
-		cout << name << "is a " << brand << " Cola" << endl;
-	}
-
-	~Cola() {
-		cout << name << "is no longer a cola" << endl;
-	}
-
-	string toString() {
-		string hasIce;
-		string isdiet;
-
-		//setting varibles
-		if (diet == true) {
-			isdiet = "is diet";
-		}
-		else
-		{
-			isdiet = "is not diet";
-		}
-
-		if (ice == true) {
-			hasIce = " has ice ";
-		}
-		else {
-			hasIce = " has no ice ";
-		}
-
-		string value = "Soda(Type:Cola): " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
-		return value;
-	}
+public:
+    Cola(string name, string description, int servingSize, int calories, double price, string brand, bool diet, bool ice);
+    ~Cola();
+    string toString();
 };
 
 class LemonLime : public Soda {
-	LemonLime(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Soda(name, description, servingSize, calories, price, brand, died, ice) {
-		cout << name << "is a " << brand << " Lemon-Lime" << endl;
-	}
-
-	~LemonLime() {
-		cout << name << "is no longer Lemon-Lime" << endl;
-	}
-
-	string toString() {
-		string hasIce;
-		string isdiet;
-
-		//setting varibles
-		if (diet == true) {
-			isdiet = "is diet";
-		}
-		else
-		{
-			isdiet = "is not diet";
-		}
-
-		if (ice == true) {
-			hasIce = " has ice ";
-		}
-		else {
-			hasIce = " has no ice ";
-		}
-
-		string value = "Soda(Type:Lemon-Lime): " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
-		return value;
-	}
+public:
+    LemonLime(string name, string description, int servingSize, int calories, double price, string brand, bool diet, bool ice);
+    ~LemonLime();
+    string toString();
 };
 
 class Birch : public Soda {
-	Birch(string name, string description, int servingSize, int calories, double price, string brand, bool died, bool ice) : Soda(name, description, servingSize, calories, price, brand, died, ice) {
-		cout << name << "is a " << brand << " Birch" << endl;
-	}
-
-	~Birch() {
-		cout << name << "is no longer Birch" << endl;
-	}
-
-	string toString() {
-		string hasIce;
-		string isdiet;
-
-		//setting varibles
-		if (diet == true) {
-			isdiet = "is diet";
-		}
-		else
-		{
-			isdiet = "is not diet";
-		}
-
-		if (ice == true) {
-			hasIce = " has ice ";
-		}
-		else {
-			hasIce = " has no ice ";
-		}
-
-		string value = "Soda(Type:Birch): " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + isdiet + hasIce;
-		return value;
-	}
+public:
+    Birch(string name, string description, int servingSize, int calories, double price, string brand, bool diet, bool ice);
+    ~Birch();
+    string toString();
 };
 
 class EnergyDrink : public Beverage {
 protected:
-	string brand;
+    string brand;
+    bool sweetener;
 
-	bool sweetener;
 public:
-	EnergyDrink(string name, string description, int servingSize, int calories, double price, string brand, bool sweeteenr) : Beverage(name, description, servingSize, calories, price) {
-		this->brand = brand;
-		this->sweetener = sweeteenr;
-		cout << name << " is a " << this->brand << "energy drink" << endl;
-	}
+    EnergyDrink(string name, string description, int servingSize, int calories, double price, string brand, bool sweetener);
+    ~EnergyDrink();
 
-	~EnergyDrink() {
-		cout << name << " is no longer an energy drink." << endl;
-	}
-
-	//get
-	string getBrand() {
-		return brand;
-	}
-
-	string toString() {;
-		string hasSweetener;
-
-		//setting varibles
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else
-		{
-			hasSweetener = " has sweetener ";
-		}
-
-		string value = "Energy Drink: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + hasSweetener ;
-		return value;
-	}
+    string getBrand();
+    string toString();
 };
 
 class Caffeine : public EnergyDrink {
 public:
-	Caffeine(string name, string description, int servingSize, int calories, double price, string brand, bool sweeteenr) : EnergyDrink(name, description, servingSize, calories, price, brand, sweeteenr) {
-		cout << name << " uses caffeine as a stimulant" << endl;
-	}
-
-	~Caffeine() {
-		cout << name << " no longer uses caffeine as a stimulant" << endl;
-	}
-
-	string toString() {
-		;
-		string hasSweetener;
-
-		//setting varibles
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else
-		{
-			hasSweetener = " has sweetener ";
-		}
-
-		string value = "Energy Drink: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + hasSweetener + " uses caffiene";
-		return value;
-	}
+    Caffeine(string name, string description, int servingSize, int calories, double price, string brand, bool sweetener);
+    ~Caffeine();
+    string toString();
 };
 
 class Taurine : public EnergyDrink {
 public:
-	Taurine(string name, string description, int servingSize, int calories, double price, string brand, bool sweeteenr) : EnergyDrink(name, description, servingSize, calories, price, brand, sweeteenr) {
-		cout << name << " uses taurine as a stimulant" << endl;
-	}
-
-	~Taurine() {
-		cout << name << " no longer uses taurine as a stimulant" << endl;
-	}
-
-	string toString() {
-		;
-		string hasSweetener;
-
-		//setting varibles
-		if (sweetener == true) {
-			hasSweetener = " has sweetener ";
-		}
-		else
-		{
-			hasSweetener = " has sweetener ";
-		}
-
-		string value = "Energy Drink: " + name + " Description: " + description + " Serving Size " + to_string(servingSize) + " Calories: " + to_string(calories) + " Price: " + to_string(price) + " Brand: " + brand + hasSweetener + " uses taurine";
-		return value;
-	}
+    Taurine(string name, string description, int servingSize, int calories, double price, string brand, bool sweetener);
+    ~Taurine();
+    string toString();
 };
 
+#endif // BEVERAGE_H
